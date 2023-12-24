@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "7ec2af3f-c36a-489c-9e6a-9dc3be66a508",
+		"name": "BSA Scouting APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api.scouting.org",
+			"item": [
+				{
+					"name": "advancements/ranks",
+					"id": "6be009d4-96cb-40e9-8103-bc3de8f1e503",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}/advancements/ranks?version=2012&id=1&programId=2&status=active",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"advancements",
+								"ranks"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "2012",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "programId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "39afa7b8-3309-4d84-804e-44660628cf04"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cf836c55-a383-4313-b9c8-96a4e3c21480",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ae617704-072f-4290-80c9-617f06c42fcf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "protocol",
+			"value": "https",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "api.scouting.org"
+		}
+	]
+}
