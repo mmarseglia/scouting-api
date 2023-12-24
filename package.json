@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test": "optic capture api.scouting.org/openapi.yaml"
+  },
+  "dependencies": {
+    "optic": "^0.1.0"
+  }
+}

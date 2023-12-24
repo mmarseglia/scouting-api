@@ -1,0 +1,11 @@
+capture:
+  api.scouting.org/openapi.yaml:
+    # Complete reference documentation for this configuration file is available:
+    #   https://www.useoptic.com/docs/capturing-traffic#configuration-reference
+
+    # Run with "optic capture api.scouting.org/openapi.yaml --update interactive"
+    server:
+      url: https://api.scouting.org
+    requests:
+      run:
+        command: sh api.scouting.org-command.sh

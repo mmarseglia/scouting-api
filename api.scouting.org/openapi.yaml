@@ -1,0 +1,273 @@
+openapi: 3.0.3
+info:
+  title: Scouting.org API
+  description: |-
+    This describes how to interact with the Boy Scouts of America API.
+
+    Documentation is available [here](https://github.com/mmarseglia/scouting-api).
+  termsOfService: https://github.com/mmarseglia/scouting-api
+  contact:
+    email: mike@marseglia.org
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about this project
+  url: https://github.com/mmarseglia/scouting-api
+servers:
+  - url: https://api.scouting.org
+tags:
+  - name: advancements
+    description: Everything about Advancement
+    externalDocs:
+      description: Find out more
+      url: https://github.com/mmarseglia/scouting-api
+  - name: persons
+    description: Access to Scout records
+    externalDocs:
+      description: Find out more about registered Scouts
+      url: https://github.com/mmarseglia/scouting-api
+paths:
+  /advancements/ranks:
+    get:
+      tags:
+        - advancements
+      summary: Get a list of all ranks and awards
+      description: Returns JSON list of all ranks and awards
+      operationId: getRanks
+      parameters:
+        - $ref: '#/components/schemas/RequestParams/properties/version'
+        - $ref: '#/components/schemas/RequestParams/properties/id'
+        - $ref: '#/components/schemas/RequestParams/properties/programId'
+        - $ref: '#/components/schemas/RequestParams/properties/status'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ranks'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  message:
+                    type: string
+                  errorDesc:
+                    type: string
+                required:
+                  - errorCode
+                  - message
+                  - errorDesc
+components:
+  schemas:
+    Ranks:
+      type: object
+      properties:
+        active:
+          type: string
+          example: "True"
+        adminNotes:
+          type: string
+          example: "Effective 1/4/2016"
+        disabledOnQuickEntry:
+          type: string
+          example: "False"
+        expiredDate:
+          type: string
+          example: ""
+        footer:
+          type: string
+          example: "<strong>NOTES:</strong> The requirements for Scout, Tenderfoot, Second
+            Class, and First Class ranks may be worked on simultaneously;
+            however, these ranks must be earned in sequence.<br><br/>
+
+            Alternative requirements for the Scout rank are
+            available for Scouts with physical or mental disabilities if they
+            meet the criteria listed in the Scouts BSA Requirements book.
+
+            <br><br>
+
+            <sup>1</sup> If your family does not have Internet
+            access at home AND you do not have ready Internet access at school
+            or another public place or via a mobile device, the Cyber Chip
+
+            portion of this requirement may be waived by your
+            Scoutmaster in consultation with your parent or guardian."
+        header:
+          type: string
+          example: "All requirements for the Scout rank must be completed as a member of a
+            troop or as a Lone Scout. If you have already completed these
+            requirements as part of the Webelos Scouting Adventure, simply
+            demonstrate your knowledge or skills to your Scoutmaster or other
+            designated leader after joining the troop."
+        id:
+          type: string
+          example: "1"
+        image:
+          type: string
+          example: "scout.png"
+        imageUrl100:
+          type: string
+          example: "https://d1kn0x9vzr5n76.cloudfront.net/images/ranks/scout100.png"
+        imageUrl200:
+          type: string
+          example: "https://d1kn0x9vzr5n76.cloudfront.net/images/ranks/scout200.png"
+        imageUrl400:
+          type: string
+          example: "https://d1kn0x9vzr5n76.cloudfront.net/images/ranks/scout400.png"
+        imageUrl50:
+          type: string
+          example: "https://d1kn0x9vzr5n76.cloudfront.net/images/ranks/scout50.png"
+        lds:
+          type: string
+          example: "True"
+        level:
+          type: string
+          example: "1"
+        name:
+          type: string
+          example: "Scout"
+        price:
+          type: string
+          example: "2.99"
+        priceLastUpdated:
+          type: string
+          format: date
+          example: "2023-09-14"
+        program:
+          type: string
+          example: "Scouts BSA"
+        programId:
+          type: string
+          example: "2"
+        proofReadDate:
+          type: string
+          example: ""
+        reallyShort:
+          type: string
+          example: "Scout"
+        scoutNet:
+          type: string
+          example: "RN"
+        searchKeywords:
+          type: string
+          example: "Boy Scout Scouting Scout Rank Award Requirements"
+        short:
+          type: string
+          example: "Scout"
+        sku:
+          type: string
+          example: "657432"
+        version:
+          type: string
+          example: "2016"
+        versionId:
+          type: string
+          example: "38"
+        ranks:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              short:
+                type: string
+              reallyShort:
+                type: string
+              level:
+                type: string
+              image:
+                type: string
+              programId:
+                type: string
+              program:
+                type: string
+              searchKeywords:
+                type: string
+              lds:
+                type: string
+              sku:
+                type: string
+              price:
+                type: string
+              priceLastUpdated:
+                type: string
+              scoutNet:
+                type: string
+              versionId:
+                type: string
+              version:
+                type: string
+              header:
+                type: string
+              footer:
+                type: string
+              adminNotes:
+                type: string
+              proofReadDate:
+                type: string
+              active:
+                type: string
+              expiredDate:
+                type: string
+              disabledOnQuickEntry:
+                type: string
+              imageUrl50:
+                type: string
+              imageUrl100:
+                type: string
+              imageUrl200:
+                type: string
+              imageUrl400:
+                type: string
+            required:
+              - id
+              - name
+              - short
+              - reallyShort
+              - level
+              - image
+              - programId
+              - program
+              - searchKeywords
+              - lds
+              - sku
+              - price
+              - priceLastUpdated
+              - scoutNet
+              - versionId
+              - version
+              - header
+              - footer
+              - adminNotes
+              - proofReadDate
+              - active
+              - expiredDate
+              - disabledOnQuickEntry
+              - imageUrl50
+              - imageUrl100
+              - imageUrl200
+              - imageUrl400
+      required:
+        - ranks
+    RequestParams:
+      type: object
+      properties:
+        version:
+          type: string
+        id:
+          type: string
+        programId:
+          type: string
+        status:
+          type: string
