@@ -36,7 +36,72 @@ Point your favorite [OpenAPI](https://www.openapis.org) tool at the `openapi.yam
 The tests are run using [Optic](https://www.useoptic.com). The test checks the API response against the specification.
 
 1. npm install
-1. npm test
+1. npm run openapi-test
+
+### Update the OpenAPI Specification
+
+1. Write the test case in the test file [api.scouting.org-command.sh](api.scouting.org-command.sh).
+1. Run the test command `npm run openapi-test`.
+1. Validate the response for the test case.
+1. Run the update command `npm run openapi-update`.
+1. Optional: Manually modify the updates.
+1. Run `npm run openapi-test` to see the updates.
+
+#### Example:
+
+Edit the file `api.scouting.org-command.sh`.
+
+```bash
+# Get a list of countries
+"$CMD" "$OPTS" "$OPTIC_PROXY"/lookups/address/countries
+```
+
+```shell
+# run the test command and validate the response
+npm run openapi-test
+
+> test
+> optic capture api.scouting.org/openapi.yaml
+
+{"ranks": [{"id": "1","name": "Scout"
+...
+"632"},{"name": "Zambia","short": "ZM","id": "633"},{"name": "Zimbabwe","short": "ZW","id": "634"}]
+✔ Finished running requests
+✔ GET /advancements/ranks
+  ✓ 200 response, ✓ 400 response
+
+100.0% coverage of your documented operations. 1 requests did not match a documented path (3 total requests).
+New endpoints are only added in interactive mode. Run 'optic capture api.scouting.org/openapi.yaml --update interactive' to add new endpoints
+```
+
+```shell
+# run the update command, validate, and select "yes" if you want to document the response
+npm run openapi-update
+...
+✔ Finished running requests
+✔ GET /advancements/ranks
+  ✓ 200 response, ✓ 400 response
+
+Learning path patterns for unmatched requests...
+> /lookups/address/countries
+✔ Is this the right pattern for GET /lookups/address/countries › yes
+Documenting new operations:
+✔ GET /lookups/address/countries
+```
+
+```shell
+# run test again to see the updates
+npm run openapi-test
+...
+✔ Finished running requests
+✔ GET /advancements/ranks
+  ✓ 200 response, ✓ 400 response
+✔ GET /lookups/address/countries
+  ✓ 200 response
+
+100.0% coverage of your documented operations. All requests matched a documented path (3 total requests)
+```
+
 
 ### Postman Collection
 

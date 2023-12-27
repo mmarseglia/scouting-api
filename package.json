@@ -1,6 +1,10 @@
 {
+  "name": "scouting-api",
+  "version": "1.0.0",
+  "description": "Test and update the OpenAPI specification",
   "scripts": {
-    "test": "optic capture api.scouting.org/openapi.yaml"
+    "openapi-test": "optic capture api.scouting.org/openapi.yaml",
+    "openapi-update": "optic capture api.scouting.org/openapi.yaml --update interactive"
   },
   "dependencies": {
     "optic": "^0.1.0"
