@@ -7,3 +7,4 @@ OPTS="--ignore-stdin"
  
 "$CMD" "$OPTS" "$OPTIC_PROXY"/advancements/ranks
 "$CMD" "$OPTS" "$OPTIC_PROXY"/advancements/ranks\?foo
+"$CMD" "$OPTS" "$OPTIC_PROXY"/lookups/address/countries

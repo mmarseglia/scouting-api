@@ -65,6 +65,15 @@ paths:
                   - errorCode
                   - message
                   - errorDesc
+  /lookups/address/countries:
+    get:
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json; charset=UTF-8; indent="false":
+              schema:
+                $ref: "#/components/schemas/GetLookupsAddressCountries200ResponseBody"
 components:
   schemas:
     Ranks:
@@ -271,3 +280,18 @@ components:
           type: string
         status:
           type: string
+    GetLookupsAddressCountries200ResponseBody:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          short:
+            type: string
+          id:
+            type: string
+        required:
+          - name
+          - short
+          - id
