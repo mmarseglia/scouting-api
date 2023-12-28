@@ -74,6 +74,89 @@ paths:
             application/json; charset=UTF-8; indent="false":
               schema:
                 $ref: "#/components/schemas/GetLookupsAddressCountries200ResponseBody"
+  /advancements/youth/{userId}/:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "401":
+          description: 401 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAdvancementsYouthYouth401ResponseBody"
+        "404":
+          description: 404 response
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  message:
+                    type: string
+                  errorDesc:
+                    type: string
+                required:
+                  - errorCode
+                  - message
+                  - errorDesc
+  /advancements/youth/{userId}:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+    get:
+      security:
+        - BearerAuth:
+            []
+      responses:
+        "404":
+          description: 404 response
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetAdvancementsYouthYouth401ResponseBody"
+        "405":
+          description: 405 response
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  errorCode:
+                    type: string
+                  message:
+                    type: string
+                  errorDesc:
+                    type: string
+                required:
+                  - errorCode
+                  - message
+                  - errorDesc
+  /advancements/youth/{userId}/leadershipPositionHistory:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json; charset=UTF-8; indent="false":
+              schema:
+                $ref: "#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory\
+                  200ResponseBody"
 components:
   schemas:
     Ranks:
@@ -295,3 +378,141 @@ components:
           - name
           - short
           - id
+    GetAdvancementsYouthYouth401ResponseBody:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+        errorDesc:
+          type: string
+      required:
+        - errorCode
+        - message
+        - errorDesc
+    GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          positionId:
+            type: number
+          position:
+            type: string
+          positionImageUrl200:
+            type: string
+          startDate:
+            type: string
+          endDate:
+            type: string
+          denId:
+            nullable: true
+          den:
+            nullable: true
+          patrolId:
+            type: number
+          patrol:
+            type: string
+          unitId:
+            type: number
+          unitLong:
+            type: string
+          charterOrgName:
+            type: string
+          unit:
+            type: string
+          districtId:
+            nullable: true
+          district:
+            nullable: true
+          councilId:
+            nullable: true
+          council:
+            nullable: true
+          rankId:
+            type: number
+          rank:
+            type: string
+          image:
+            type: string
+          imageUrl50:
+            type: string
+          imageUrl100:
+            type: string
+          imageUrl200:
+            type: string
+          imageUrl400:
+            type: string
+          requestedDate:
+            nullable: true
+          unitApproved:
+            type: boolean
+          approved:
+            type: boolean
+          approvalMessage:
+            nullable: true
+          notes:
+            type: string
+          defaultPosition:
+            type: boolean
+          available:
+            type: boolean
+          listType:
+            nullable: true
+          rosterPending:
+            type: boolean
+          dateInvited:
+            nullable: true
+          personalMessage:
+            nullable: true
+          bsaMemberId:
+            type: string
+          numberOfDaysInPosition:
+            type: number
+        required:
+          - id
+          - positionId
+          - position
+          - positionImageUrl200
+          - startDate
+          - endDate
+          - denId
+          - den
+          - patrolId
+          - patrol
+          - unitId
+          - unitLong
+          - charterOrgName
+          - unit
+          - districtId
+          - district
+          - councilId
+          - council
+          - rankId
+          - rank
+          - image
+          - imageUrl50
+          - imageUrl100
+          - imageUrl200
+          - imageUrl400
+          - requestedDate
+          - unitApproved
+          - approved
+          - approvalMessage
+          - notes
+          - defaultPosition
+          - available
+          - listType
+          - rosterPending
+          - dateInvited
+          - personalMessage
+          - bsaMemberId
+          - numberOfDaysInPosition
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

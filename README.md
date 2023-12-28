@@ -7,6 +7,7 @@ This attempts to document the APIs of the Boy Scouts of America.
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Setup](#setup)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -23,7 +24,25 @@ This project documents the APIs using the [OpenAPI specification](https://spec.o
 
 ## Installation
 
-You will need [NodeJS](https://nodejs.org/) to validate the API. Otherwise, your favorite editor or OpenAPI tool will do.
+You will need [NodeJS](https://nodejs.org/) to validate the API. Otherwise, your favorite editor or OpenAPI tool will
+do. Install the dependencies.
+
+```shell
+npm install
+```
+
+## Setup
+
+Some API calls require authentication or parameters, such as a user's ID to get a person's Leadership History
+`/advancements/youth/${userId}/leadershipPositionHistory`. These are configured as shell variables in the config file,
+[config.sh](config.sh).
+
+| Variable | Description |
+|----------|-------------|
+| userId | User ID of the person. Not the same as Member ID. |
+| TOKEN | JWT token for authentication to protected endpoints. [docs/authentication.md](docs/authentication.md) |
+
+Some tests will fail if you do not change the default values in the config file.
 
 ## Usage
 
@@ -35,8 +54,9 @@ Point your favorite [OpenAPI](https://www.openapis.org) tool at the `openapi.yam
 
 The tests are run using [Optic](https://www.useoptic.com). The test checks the API response against the specification.
 
-1. npm install
-1. npm run openapi-test
+```shell
+npm run openapi-test
+```
 
 ### Update the OpenAPI Specification
 
@@ -47,7 +67,7 @@ The tests are run using [Optic](https://www.useoptic.com). The test checks the A
 1. Optional: Manually modify the updates.
 1. Run `npm run openapi-test` to see the updates.
 
-#### Example:
+#### Example
 
 Edit the file `api.scouting.org-command.sh`.
 
@@ -102,8 +122,7 @@ npm run openapi-test
 100.0% coverage of your documented operations. All requests matched a documented path (3 total requests)
 ```
 
-
-### Postman Collection
+## Postman Collection
 
 You can use Postman to easily make API calls. Download Postman and you can find the collection [here](https://app.getpostman.com/run-collection/1018039-7ec2af3f-c36a-489c-9e6a-9dc3be66a508?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D1018039-7ec2af3f-c36a-489c-9e6a-9dc3be66a508%26entityType%3Dcollection%26workspaceId%3De4113f38-1f4e-4639-b1ac-96d14dd279f3)
 
