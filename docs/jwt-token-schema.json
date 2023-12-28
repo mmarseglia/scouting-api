@@ -1,0 +1,106 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "stk": {
+        "type": "string",
+        "description": "Security token key for session validation",
+        "example": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      },
+      "user": {
+        "type": "string",
+        "description": "Username or user identifier",
+        "example": "anonymous_user"
+      },
+      "scope": {
+        "type": "array",
+        "description": "Scope of access or permissions",
+        "items": {
+          "type": "string"
+        },
+        "example": ["bsa-core"]
+      },
+      "uid": {
+        "type": "integer",
+        "description": "Unique user identifier",
+        "example": 9999999
+      },
+      "mid": {
+        "type": "string",
+        "description": "Membership ID associated with the user",
+        "example": "XXXXXXX"
+      },
+      "ugu": {
+        "type": "string",
+        "description": "User GUID",
+        "example": "XXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+      },
+      "pgu": {
+        "type": "string",
+        "description": "Person GUID",
+        "example": "XXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+      },
+      "orig": {
+        "type": "object",
+        "description": "The origin from where the request was initiated",
+        "properties": {
+          "uri": {
+            "type": "string",
+            "example": "https://advancements.scouting.org"
+          }
+        }
+      },
+      "dest": {
+        "type": "object",
+        "description": "Destination URIs or endpoints the token gives access to",
+        "properties": {
+          "uri": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["https://my.scouting.org", "https://api.scouting.org", "https://advancements.scouting.org"]
+          }
+        }
+      },
+      "amr": {
+        "type": "array",
+        "description": "Authentication methods used",
+        "items": {
+          "type": "string"
+        },
+        "example": ["st"]
+      },
+      "iat": {
+        "type": "integer",
+        "description": "Issued-at time, the timestamp when the token was generated",
+        "example": 1703770593
+      },
+      "exp": {
+        "type": "integer",
+        "description": "Expiration time of the token (Unix timestamp)",
+        "example": 1703799393
+      },
+      "aud": {
+        "type": "string",
+        "description": "Audience for which the token is intended",
+        "example": "bsa"
+      },
+      "iss": {
+        "type": "string",
+        "description": "Issuer of the token",
+        "example": "login-api"
+      },
+      "sub": {
+        "type": "string",
+        "description": "Subject of the token, often referring to the user",
+        "example": "credentials"
+      },
+      "jti": {
+        "type": "string",
+        "description": "JWT ID, a unique identifier for the token",
+        "example": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      }
+    },
+    "required": ["stk", "user", "uid", "iat", "exp", "aud", "iss", "sub", "jti"]
+  }
