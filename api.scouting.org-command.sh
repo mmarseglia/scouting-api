@@ -15,6 +15,9 @@ OPTS="--ignore-stdin"
 ## ranks invalid parameter
 "$CMD" "$OPTS" "$OPTIC_PROXY"/advancements/ranks\?foo
 
+## rank requirements
+"$CMD" "$OPTS" "$OPTIC_PROXY"/advancements/ranks/1/requirements
+
 # advancements/youth
 ## authorization failure
 "$CMD" "$OPTS" "$OPTIC_PROXY"/advancements/youth/123457890/

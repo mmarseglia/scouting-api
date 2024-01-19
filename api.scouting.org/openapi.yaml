@@ -157,6 +157,21 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory\
                   200ResponseBody"
+  /advancements/ranks/{rank}/requirements:
+    parameters:
+      - in: path
+        name: rank
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetAdvancementsRanksRankRequirements200ResponseBody"
 components:
   schemas:
     Ranks:
@@ -511,6 +526,139 @@ components:
           - personalMessage
           - bsaMemberId
           - numberOfDaysInPosition
+    GetAdvancementsRanksRankRequirements200ResponseBody:
+      type: object
+      properties:
+        rankInformation:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+            short:
+              type: string
+            reallyShort:
+              type: string
+            level:
+              type: string
+            image:
+              type: string
+            programId:
+              type: string
+            searchKeywords:
+              type: string
+            lds:
+              type: string
+            sku:
+              type: string
+            price:
+              type: string
+            priceLastUpdated:
+              type: string
+            scoutNet:
+              type: string
+            header:
+              type: string
+            footer:
+              type: string
+            adminNotes:
+              type: string
+            proofReadDate:
+              type: string
+            active:
+              type: string
+            disabledOnQuickEntry:
+              type: string
+          required:
+            - name
+            - version
+            - short
+            - reallyShort
+            - level
+            - image
+            - programId
+            - searchKeywords
+            - lds
+            - sku
+            - price
+            - priceLastUpdated
+            - scoutNet
+            - header
+            - footer
+            - adminNotes
+            - proofReadDate
+            - active
+            - disabledOnQuickEntry
+        requirements:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              versionId:
+                type: string
+              name:
+                type: string
+              short:
+                type: string
+              listNumber:
+                type: string
+              requirementNumber:
+                type: string
+              sortOrder:
+                type: string
+              footer:
+                type: string
+              childrenRequired:
+                type: string
+              required:
+                type: string
+              parentRequirementId:
+                type: string
+              videoExternalURLId:
+                type: string
+              previousRankRequired:
+                type: string
+              monthsSinceLastRankRequired:
+                type: string
+              eagleMBRequired:
+                type: string
+              totalMBRequired:
+                type: string
+              serviceHoursRequired:
+                type: string
+              disabledOnQuickEntry:
+                type: string
+              linkedAdventureId:
+                type: string
+              linkedAwardId:
+                type: string
+            required:
+              - id
+              - versionId
+              - name
+              - short
+              - listNumber
+              - requirementNumber
+              - sortOrder
+              - footer
+              - childrenRequired
+              - required
+              - parentRequirementId
+              - videoExternalURLId
+              - previousRankRequired
+              - monthsSinceLastRankRequired
+              - eagleMBRequired
+              - totalMBRequired
+              - serviceHoursRequired
+              - disabledOnQuickEntry
+              - linkedAdventureId
+              - linkedAwardId
+      required:
+        - rankInformation
+        - requirements
   securitySchemes:
     BearerAuth:
       type: http
