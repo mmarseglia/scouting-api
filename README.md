@@ -1,6 +1,6 @@
-# BSA Scouting API
+# Scouting America API
 
-This attempts to document the APIs of the Boy Scouts of America.
+This attempts to document the APIs of Scouting America.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ This attempts to document the APIs of the Boy Scouts of America.
 
 ## Introduction
 
-The Boy Scouts of America has APIs used by their applications. Those APIs are documented here in the hopes that
+Scouting America has APIs used by their applications. Those APIs are documented here in the hopes that
 volunteers can find creative uses to better serve Scouting.
 
 This project documents the APIs using the [OpenAPI specification](https://spec.openapis.org/oas/latest.html).
