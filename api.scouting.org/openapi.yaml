@@ -18,6 +18,11 @@ externalDocs:
 servers:
   - url: https://api.scouting.org
 tags:
+  - name: authentication
+    description: Obtain login JWT & userId
+    externalDocs:
+      description: Find out more
+      url: https://github.com/mmarseglia/scouting-api/blob/main/docs/authentication.md
   - name: advancements
     description: Everything about Advancement
     externalDocs:
@@ -29,6 +34,35 @@ tags:
       description: Find out more about registered Scouts
       url: https://github.com/mmarseglia/scouting-api
 paths:
+  /api/users/{username}/authenticate:
+    servers:
+      - url: https://my.scouting.org
+    parameters:
+      - in: path
+        name: username
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  format: password
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json; version = 2:
+              schema:
+                $ref: "#/components/schemas/Authenticate200ResponseBody"
   /advancements/ranks:
     get:
       tags:
@@ -174,6 +208,71 @@ paths:
                 $ref: "#/components/schemas/GetAdvancementsRanksRankRequirements200ResponseBody"
 components:
   schemas:
+    Authenticate200ResponseBody:
+      type: object
+      properties:
+        sessionToken: 
+          type: string
+        personGuid: 
+          type: string
+          format: uuid
+        userGuid: 
+          type: string
+          format: uuid
+        membership: 
+          type: object
+          properties: 
+            memberId: 
+              type: integer
+            email: 
+              type: string
+              format: email
+            isDelete: 
+              type: boolean
+              example: false
+        account: 
+          type: object
+          properties: 
+            username: 
+              type: string
+            userId: 
+              type: integer
+        profile: 
+          type: object
+          properties: 
+            firstName: 
+              type: string
+            middleName: 
+              type: string
+            lastName: 
+              type: string
+            gender: 
+              type: string
+            prefix: 
+              type: string
+              format: nullable
+            suffix: 
+              type: string
+              format: nullable
+            dateOfBirth: 
+              type: string
+              format: date
+        userProfile: 
+          type: string
+          format: nullable
+        token: 
+          type: string
+          example: "JWT"
+        hasMasqueradeRole: 
+          type: boolean
+        grantType: 
+          type: string
+          example: "password-myst"
+        isMfaSignedUp: 
+          type: boolean
+        mfaDeliveryMethods: 
+          type: array
+          items: {}
     Ranks:
       type: object
       properties:
