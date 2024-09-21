@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Scouting.org API
   description: |-
@@ -28,6 +28,12 @@ tags:
     externalDocs:
       description: Find out more about registered Scouts
       url: https://github.com/mmarseglia/scouting-api
+  - name: organizations
+    description: Access to information about organizations, units, and leaders
+    externalDocs:
+      description: Find out more about organizations
+      url: https://github.com/mmarseglia/scouting-api
+
 paths:
   /advancements/ranks:
     get:
@@ -37,10 +43,10 @@ paths:
       description: Returns JSON list of all ranks and awards
       operationId: getRanks
       parameters:
-        - $ref: '#/components/schemas/RequestParams/properties/version'
-        - $ref: '#/components/schemas/RequestParams/properties/id'
-        - $ref: '#/components/schemas/RequestParams/properties/programId'
-        - $ref: '#/components/schemas/RequestParams/properties/status'
+        - $ref: '#/components/parameters/version'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/programId'
+        - $ref: '#/components/parameters/status'
       responses:
         '200':
           description: Successful operation
@@ -51,7 +57,7 @@ paths:
         '400':
           description: Bad Request
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -65,113 +71,628 @@ paths:
                   - errorCode
                   - message
                   - errorDesc
+
   /lookups/address/countries:
     get:
       responses:
-        "200":
-          description: 200 response
-          content:
-            application/json; charset=UTF-8; indent="false":
-              schema:
-                $ref: "#/components/schemas/GetLookupsAddressCountries200ResponseBody"
-  /advancements/youth/{userId}/:
-    parameters:
-      - in: path
-        name: userId
-        required: true
-        schema:
-          type: string
-    get:
-      responses:
-        "401":
-          description: 401 response
+        '200':
+          description: Successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetAdvancementsYouthYouth401ResponseBody"
-        "404":
-          description: 404 response
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                type: object
-                properties:
-                  errorCode:
-                    type: string
-                  message:
-                    type: string
-                  errorDesc:
-                    type: string
-                required:
-                  - errorCode
-                  - message
-                  - errorDesc
-  /advancements/youth/{userId}:
-    parameters:
-      - in: path
-        name: userId
-        required: true
-        schema:
-          type: string
-    get:
-      security:
-        - BearerAuth:
-            []
-      responses:
-        "404":
-          description: 404 response
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/GetAdvancementsYouthYouth401ResponseBody"
-        "405":
-          description: 405 response
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                type: object
-                properties:
-                  errorCode:
-                    type: string
-                  message:
-                    type: string
-                  errorDesc:
-                    type: string
-                required:
-                  - errorCode
-                  - message
-                  - errorDesc
+                $ref: '#/components/schemas/GetLookupsAddressCountries200ResponseBody'
+
   /advancements/youth/{userId}/leadershipPositionHistory:
-    parameters:
-      - in: path
-        name: userId
-        required: true
-        schema:
-          type: string
     get:
       responses:
-        "200":
-          description: 200 response
+        '200':
+          description: Successful response
           content:
-            application/json; charset=UTF-8; indent="false":
+            application/json:
               schema:
-                $ref: "#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory\
-                  200ResponseBody"
+                $ref: '#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody'
+
   /advancements/ranks/{rank}/requirements:
-    parameters:
-      - in: path
-        name: rank
-        required: true
-        schema:
-          type: string
     get:
+      operationId: getRankRequirements
+      parameters:
+        - in: path
+          name: rank
+          required: true
+          schema:
+            type: string
       responses:
-        "200":
-          description: 200 response
+        '200':
+          description: Successful operation
           content:
-            application/json; charset=UTF-8:
+            application/json:
               schema:
-                $ref: "#/components/schemas/GetAdvancementsRanksRankRequirements200ResponseBody"
+                $ref: '#/components/schemas/GetAdvancementsRanksRankRequirements200ResponseBody'
+
+  /advancements/meritBadges:
+    get:
+      operationId: getMeritBadges
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json: {}
+      tags:
+        - advancements
+
+  /advancements/v2/youth/{userId}/awards:
+    get:
+      operationId: getYouthAwardsByUserId
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+            example: 1234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - advancements
+
+  /advancements/v2/youth/{userId}/leadershipPositionHistory:
+    get:
+      operationId: getYouthLeadershipPositionHistoryByUserId
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+            example: 1234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody'
+      tags:
+        - advancements
+
+  /advancements/v2/youth/{userId}/meritBadges:
+    get:
+      operationId: getYouthMeritBadgesByUserId
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+            example: 1234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - advancements
+
+  /advancements/v2/youth/{userId}/ranks:
+    get:
+      operationId: getYouthRanksByUserId
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+            example: 1234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - advancements
+
+  /advancements/v2/{personGuid}/userActivitySummary:
+    get:
+      operationId: getUserActivitySummaryByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - advancements
+
+  /organizations/v2/units/{organizationGuid}/adults:
+    get:
+      operationId: getAdultsByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - organizations
+
+  /organizations/v2/units/{organizationGuid}/parents:
+    get:
+      operationId: getParentsByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/units/{organizationGuid}/subUnits:
+    get:
+      operationId: getSubUnitsByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/units/{organizationGuid}/youths:
+    get:
+      operationId: getYouthsByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/advancementDashboard:
+    get:
+      operationId: getAdvancementDashboardByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/advancementsReadyToBeAwarded:
+    post:
+      operationId: postAdvancementsReadyToBeAwardedByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              additionalProperties: true
+              properties: {}
+              type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/orders:
+    get:
+      operationId: getOrdersByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/orgAdults:
+    post:
+      operationId: postOrgAdultsByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              additionalProperties: true
+              properties: {}
+              type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/orgTrainingSummary:
+    get:
+      operationId: getOrgTrainingSummaryByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/orgYouths:
+    post:
+      operationId: postOrgYouthsByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              additionalProperties: true
+              properties: {}
+              type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/profile:
+    get:
+      operationId: getOrganizationProfileByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/renewalDashboard:
+    get:
+      operationId: getRenewalDashboardByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/unitActivitiesDashboard:
+    get:
+      operationId: getUnitActivitiesDashboardByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/unitAdvancementDashboard:
+    get:
+      operationId: getUnitAdvancementDashboardByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/unitRenewalStatusDashboard:
+    get:
+      operationId: getUnitRenewalStatusDashboardByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /organizations/v2/{organizationGuid}/unitRoundtableAttendance:
+    get:
+      operationId: getUnitRoundtableAttendanceByOrganizationGuid
+      parameters:
+        - in: path
+          name: organizationGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - organizations
+
+  /persons/v2/{personGuid}/personprofile:
+    get:
+      operationId: getPersonProfileByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - persons
+
+  /persons/v2/{personGuid}/profile:
+    get:
+      operationId: getProfileByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - persons
+
+  /persons/v2/{personGuid}/renewalRelationships:
+    get:
+      operationId: getRenewalRelationshipsByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - persons
+
+  /persons/v2/{personGuid}/roleTypes:
+    get:
+      operationId: getRoleTypesByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - persons
+
+  /persons/v2/{personGuid}/subscriptions:
+    get:
+      operationId: getSubscriptionsByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - persons
+
+  /persons/v2/{personGuid}/tools:
+    get:
+      operationId: getToolsByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - persons
+
+  /persons/v2/{personGuid}/trainings/ypt:
+    get:
+      operationId: getYPTTrainingsByPersonGuid
+      parameters:
+        - in: path
+          name: personGuid
+          required: true
+          schema:
+            type: string
+            example: 11111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      tags:
+        - persons
+
+openapi: 3.1.0
+info:
+  title: Scouting.org API
+  description: |-
+    This describes how to interact with the Boy Scouts of America API.
+
+    Documentation is available [here](https://github.com/mmarseglia/scouting-api).
+  termsOfService: https://github.com/mmarseglia/scouting-api
+  contact:
+    email: mike@marseglia.org
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about this project
+  url: https://github.com/mmarseglia/scouting-api
+servers:
+  - url: https://api.scouting.org
+tags:
+  - name: advancements
+    description: Everything about Advancement
+    externalDocs:
+      description: Find out more
+      url: https://github.com/mmarseglia/scouting-api
+  - name: persons
+    description: Access to Scout records
+    externalDocs:
+      description: Find out more about registered Scouts
+      url: https://github.com/mmarseglia/scouting-api
+  - name: organizations
+    description: Access to information about organizations, units, and leaders
+    externalDocs:
+      description: Find out more about organizations
+      url: https://github.com/mmarseglia/scouting-api
+
 components:
   schemas:
     Ranks:
@@ -191,29 +712,10 @@ components:
           example: ""
         footer:
           type: string
-          example: "<strong>NOTES:</strong> The requirements for Scout, Tenderfoot, Second
-            Class, and First Class ranks may be worked on simultaneously;
-            however, these ranks must be earned in sequence.<br><br/>
-
-            Alternative requirements for the Scout rank are
-            available for Scouts with physical or mental disabilities if they
-            meet the criteria listed in the Scouts BSA Requirements book.
-
-            <br><br>
-
-            <sup>1</sup> If your family does not have Internet
-            access at home AND you do not have ready Internet access at school
-            or another public place or via a mobile device, the Cyber Chip
-
-            portion of this requirement may be waived by your
-            Scoutmaster in consultation with your parent or guardian."
+          example: "<strong>NOTES:</strong> The requirements for Scout, Tenderfoot, Second Class, and First Class ranks..."
         header:
           type: string
-          example: "All requirements for the Scout rank must be completed as a member of a
-            troop or as a Lone Scout. If you have already completed these
-            requirements as part of the Webelos Scouting Adventure, simply
-            demonstrate your knowledge or skills to your Scoutmaster or other
-            designated leader after joining the troop."
+          example: "All requirements for the Scout rank must be completed as a member of a troop..."
         id:
           type: string
           example: "1"
@@ -367,6 +869,7 @@ components:
               - imageUrl400
       required:
         - ranks
+
     RequestParams:
       type: object
       properties:
@@ -378,6 +881,7 @@ components:
           type: string
         status:
           type: string
+
     GetLookupsAddressCountries200ResponseBody:
       type: array
       items:
@@ -393,6 +897,7 @@ components:
           - name
           - short
           - id
+
     GetAdvancementsYouthYouth401ResponseBody:
       type: object
       properties:
@@ -406,6 +911,7 @@ components:
         - errorCode
         - message
         - errorDesc
+
     GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody:
       type: array
       items:
@@ -494,18 +1000,12 @@ components:
           - positionImageUrl200
           - startDate
           - endDate
-          - denId
-          - den
           - patrolId
           - patrol
           - unitId
           - unitLong
           - charterOrgName
           - unit
-          - districtId
-          - district
-          - councilId
-          - council
           - rankId
           - rank
           - image
@@ -513,19 +1013,7 @@ components:
           - imageUrl100
           - imageUrl200
           - imageUrl400
-          - requestedDate
-          - unitApproved
-          - approved
-          - approvalMessage
-          - notes
-          - defaultPosition
-          - available
-          - listType
-          - rosterPending
-          - dateInvited
-          - personalMessage
-          - bsaMemberId
-          - numberOfDaysInPosition
+
     GetAdvancementsRanksRankRequirements200ResponseBody:
       type: object
       properties:
@@ -539,126 +1027,8 @@ components:
             short:
               type: string
             reallyShort:
-              type: string
-            level:
-              type: string
-            image:
-              type: string
-            programId:
-              type: string
-            searchKeywords:
-              type: string
-            lds:
-              type: string
-            sku:
-              type: string
-            price:
-              type: string
-            priceLastUpdated:
-              type: string
-            scoutNet:
-              type: string
-            header:
-              type: string
-            footer:
-              type: string
-            adminNotes:
-              type: string
-            proofReadDate:
-              type: string
-            active:
-              type: string
-            disabledOnQuickEntry:
-              type: string
-          required:
-            - name
-            - version
-            - short
-            - reallyShort
-            - level
-            - image
-            - programId
-            - searchKeywords
-            - lds
-            - sku
-            - price
-            - priceLastUpdated
-            - scoutNet
-            - header
-            - footer
-            - adminNotes
-            - proofReadDate
-            - active
-            - disabledOnQuickEntry
-        requirements:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              versionId:
-                type: string
-              name:
-                type: string
-              short:
-                type: string
-              listNumber:
-                type: string
-              requirementNumber:
-                type: string
-              sortOrder:
-                type: string
-              footer:
-                type: string
-              childrenRequired:
-                type: string
-              required:
-                type: string
-              parentRequirementId:
-                type: string
-              videoExternalURLId:
-                type: string
-              previousRankRequired:
-                type: string
-              monthsSinceLastRankRequired:
-                type: string
-              eagleMBRequired:
-                type: string
-              totalMBRequired:
-                type: string
-              serviceHoursRequired:
-                type: string
-              disabledOnQuickEntry:
-                type: string
-              linkedAdventureId:
-                type: string
-              linkedAwardId:
-                type: string
-            required:
-              - id
-              - versionId
-              - name
-              - short
-              - listNumber
-              - requirementNumber
-              - sortOrder
-              - footer
-              - childrenRequired
-              - required
-              - parentRequirementId
-              - videoExternalURLId
-              - previousRankRequired
-              - monthsSinceLastRankRequired
-              - eagleMBRequired
-              - totalMBRequired
-              - serviceHoursRequired
-              - disabledOnQuickEntry
-              - linkedAdventureId
-              - linkedAwardId
-      required:
-        - rankInformation
-        - requirements
+              type:
+
   securitySchemes:
     BearerAuth:
       type: http
