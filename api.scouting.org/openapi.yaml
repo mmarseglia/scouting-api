@@ -656,43 +656,7 @@ paths:
             application/json: {}
       tags:
         - persons
-
-openapi: 3.1.0
-info:
-  title: Scouting.org API
-  description: |-
-    This describes how to interact with the Boy Scouts of America API.
-
-    Documentation is available [here](https://github.com/mmarseglia/scouting-api).
-  termsOfService: https://github.com/mmarseglia/scouting-api
-  contact:
-    email: mike@marseglia.org
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.0
-externalDocs:
-  description: Find out more about this project
-  url: https://github.com/mmarseglia/scouting-api
-servers:
-  - url: https://api.scouting.org
-tags:
-  - name: advancements
-    description: Everything about Advancement
-    externalDocs:
-      description: Find out more
-      url: https://github.com/mmarseglia/scouting-api
-  - name: persons
-    description: Access to Scout records
-    externalDocs:
-      description: Find out more about registered Scouts
-      url: https://github.com/mmarseglia/scouting-api
-  - name: organizations
-    description: Access to information about organizations, units, and leaders
-    externalDocs:
-      description: Find out more about organizations
-      url: https://github.com/mmarseglia/scouting-api
-
+        
 components:
   schemas:
     Ranks:
