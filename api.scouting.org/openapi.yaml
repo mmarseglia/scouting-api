@@ -43,18 +43,18 @@ paths:
       description: Returns JSON list of all ranks and awards
       operationId: getRanks
       parameters:
-        - $ref: '#/components/parameters/version'
-        - $ref: '#/components/parameters/id'
-        - $ref: '#/components/parameters/programId'
-        - $ref: '#/components/parameters/status'
+        - $ref: "#/components/parameters/version"
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/programId"
+        - $ref: "#/components/parameters/status"
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ranks'
-        '400':
+                $ref: "#/components/schemas/Ranks"
+        "400":
           description: Bad Request
           content:
             application/json:
@@ -75,22 +75,22 @@ paths:
   /lookups/address/countries:
     get:
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetLookupsAddressCountries200ResponseBody'
+                $ref: "#/components/schemas/GetLookupsAddressCountries200ResponseBody"
 
   /advancements/youth/{userId}/leadershipPositionHistory:
     get:
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody'
+                $ref: "#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody"
 
   /advancements/ranks/{rank}/requirements:
     get:
@@ -102,18 +102,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAdvancementsRanksRankRequirements200ResponseBody'
+                $ref: "#/components/schemas/GetAdvancementsRanksRankRequirements200ResponseBody"
 
   /advancements/meritBadges:
     get:
       operationId: getMeritBadges
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json: {}
@@ -131,7 +131,7 @@ paths:
             type: string
             example: 1234567
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -151,12 +151,12 @@ paths:
             type: string
             example: 1234567
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody'
+                $ref: "#/components/schemas/GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody"
       tags:
         - advancements
 
@@ -171,7 +171,7 @@ paths:
             type: string
             example: 1234567
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -191,7 +191,7 @@ paths:
             type: string
             example: 1234567
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -211,7 +211,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -229,7 +229,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -249,7 +249,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -267,7 +267,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -285,7 +285,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -303,7 +303,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -322,13 +322,13 @@ paths:
             example: 11111111-1111-1111-1111-111111111111
       requestBody:
         content:
-          '*/*':
+          "*/*":
             schema:
               additionalProperties: true
               properties: {}
               type: object
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -346,7 +346,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -365,13 +365,13 @@ paths:
             example: 11111111-1111-1111-1111-111111111111
       requestBody:
         content:
-          '*/*':
+          "*/*":
             schema:
               additionalProperties: true
               properties: {}
               type: object
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -389,7 +389,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -408,13 +408,13 @@ paths:
             example: 11111111-1111-1111-1111-111111111111
       requestBody:
         content:
-          '*/*':
+          "*/*":
             schema:
               additionalProperties: true
               properties: {}
               type: object
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -432,7 +432,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -450,7 +450,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -468,7 +468,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -486,7 +486,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -504,7 +504,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -522,7 +522,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -540,7 +540,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
@@ -560,7 +560,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -578,7 +578,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -596,7 +596,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -614,7 +614,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -632,7 +632,7 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
@@ -650,13 +650,13 @@ paths:
             type: string
             example: 11111111-1111-1111-1111-111111111111
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json: {}
       tags:
         - persons
-        
+
 components:
   schemas:
     Ranks:
@@ -676,10 +676,31 @@ components:
           example: ""
         footer:
           type: string
-          example: "<strong>NOTES:</strong> The requirements for Scout, Tenderfoot, Second Class, and First Class ranks..."
+          example:
+            "<strong>NOTES:</strong> The requirements for Scout, Tenderfoot, Second
+            Class, and First Class ranks may be worked on simultaneously;
+            however, these ranks must be earned in sequence.<br><br/>
+
+            Alternative requirements for the Scout rank are
+            available for Scouts with physical or mental disabilities if they
+            meet the criteria listed in the Scouts BSA Requirements book.
+
+            <br><br>
+
+            <sup>1</sup> If your family does not have Internet
+            access at home AND you do not have ready Internet access at school
+            or another public place or via a mobile device, the Cyber Chip
+
+            portion of this requirement may be waived by your
+            Scoutmaster in consultation with your parent or guardian."
         header:
           type: string
-          example: "All requirements for the Scout rank must be completed as a member of a troop..."
+          example:
+            "All requirements for the Scout rank must be completed as a member of a
+            troop or as a Lone Scout. If you have already completed these
+            requirements as part of the Webelos Scouting Adventure, simply
+            demonstrate your knowledge or skills to your Scoutmaster or other
+            designated leader after joining the troop."
         id:
           type: string
           example: "1"
@@ -833,7 +854,6 @@ components:
               - imageUrl400
       required:
         - ranks
-
     RequestParams:
       type: object
       properties:
@@ -845,7 +865,6 @@ components:
           type: string
         status:
           type: string
-
     GetLookupsAddressCountries200ResponseBody:
       type: array
       items:
@@ -861,7 +880,6 @@ components:
           - name
           - short
           - id
-
     GetAdvancementsYouthYouth401ResponseBody:
       type: object
       properties:
@@ -875,7 +893,6 @@ components:
         - errorCode
         - message
         - errorDesc
-
     GetAdvancementsYouthUseridLeadershippositionhistory200ResponseBody:
       type: array
       items:
@@ -964,12 +981,18 @@ components:
           - positionImageUrl200
           - startDate
           - endDate
+          - denId
+          - den
           - patrolId
           - patrol
           - unitId
           - unitLong
           - charterOrgName
           - unit
+          - districtId
+          - district
+          - councilId
+          - council
           - rankId
           - rank
           - image
@@ -977,7 +1000,19 @@ components:
           - imageUrl100
           - imageUrl200
           - imageUrl400
-
+          - requestedDate
+          - unitApproved
+          - approved
+          - approvalMessage
+          - notes
+          - defaultPosition
+          - available
+          - listType
+          - rosterPending
+          - dateInvited
+          - personalMessage
+          - bsaMemberId
+          - numberOfDaysInPosition
     GetAdvancementsRanksRankRequirements200ResponseBody:
       type: object
       properties:
@@ -991,8 +1026,126 @@ components:
             short:
               type: string
             reallyShort:
-              type:
-
+              type: string
+            level:
+              type: string
+            image:
+              type: string
+            programId:
+              type: string
+            searchKeywords:
+              type: string
+            lds:
+              type: string
+            sku:
+              type: string
+            price:
+              type: string
+            priceLastUpdated:
+              type: string
+            scoutNet:
+              type: string
+            header:
+              type: string
+            footer:
+              type: string
+            adminNotes:
+              type: string
+            proofReadDate:
+              type: string
+            active:
+              type: string
+            disabledOnQuickEntry:
+              type: string
+          required:
+            - name
+            - version
+            - short
+            - reallyShort
+            - level
+            - image
+            - programId
+            - searchKeywords
+            - lds
+            - sku
+            - price
+            - priceLastUpdated
+            - scoutNet
+            - header
+            - footer
+            - adminNotes
+            - proofReadDate
+            - active
+            - disabledOnQuickEntry
+        requirements:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              versionId:
+                type: string
+              name:
+                type: string
+              short:
+                type: string
+              listNumber:
+                type: string
+              requirementNumber:
+                type: string
+              sortOrder:
+                type: string
+              footer:
+                type: string
+              childrenRequired:
+                type: string
+              required:
+                type: string
+              parentRequirementId:
+                type: string
+              videoExternalURLId:
+                type: string
+              previousRankRequired:
+                type: string
+              monthsSinceLastRankRequired:
+                type: string
+              eagleMBRequired:
+                type: string
+              totalMBRequired:
+                type: string
+              serviceHoursRequired:
+                type: string
+              disabledOnQuickEntry:
+                type: string
+              linkedAdventureId:
+                type: string
+              linkedAwardId:
+                type: string
+            required:
+              - id
+              - versionId
+              - name
+              - short
+              - listNumber
+              - requirementNumber
+              - sortOrder
+              - footer
+              - childrenRequired
+              - required
+              - parentRequirementId
+              - videoExternalURLId
+              - previousRankRequired
+              - monthsSinceLastRankRequired
+              - eagleMBRequired
+              - totalMBRequired
+              - serviceHoursRequired
+              - disabledOnQuickEntry
+              - linkedAdventureId
+              - linkedAwardId
+      required:
+        - rankInformation
+        - requirements
   securitySchemes:
     BearerAuth:
       type: http
