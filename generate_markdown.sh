@@ -2,6 +2,8 @@
 
 echo "| Variable | Description |"
 echo "|----------|-------------|"
+echo "| userId | User ID of the person (automatically fetched from my.scouting.org) |"
+echo "| TOKEN | JWT token for authentication (automatically fetched from my.scouting.org) |"
 
 # Read the config file line by line
 while IFS= read -r line; do
