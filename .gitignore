@@ -86,3 +86,5 @@ dist/
 
 # DynamoDB Local files
 .dynamodb/
+.aider*
+.tool-versions
