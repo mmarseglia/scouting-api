@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Check if authentication is set up
+if [ -z "$TOKEN" ] || [ -z "$userId" ]; then
+    echo "Error: Authentication not set up. Please run:"
+    echo "source config.sh <username> <password>"
+    exit 1
+fi
+
 # shellcheck disable=SC1091
 source config.sh
 

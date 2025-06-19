@@ -34,15 +34,19 @@ npm install
 ## Setup
 
 Some API calls require authentication or parameters, such as a user's ID to get a person's Leadership History
-`/advancements/youth/${userId}/leadershipPositionHistory`. These are configured as shell variables in the config file,
+`/advancements/youth/${userId}/leadershipPositionHistory`. These are configured as shell variables using the authentication script,
 [config.sh](config.sh).
 
-| Variable | Description |
-|----------|-------------|
-| userId | User ID of the person. Not the same as Member ID. |
-| TOKEN | JWT token for authentication to protected endpoints. [docs/authentication.md](docs/authentication.md) |
+To set up authentication:
+1. Source the config.sh script with your my.scouting.org credentials:
+   ```shell
+   source config.sh <username> <password>
+   ```
+2. This will automatically set the required environment variables:
+   - `userId`: User ID of the person (automatically fetched)
+   - `TOKEN`: JWT token for authentication (automatically fetched)
 
-Some tests will fail if you do not change the default values in the config file.
+Some tests will fail if you do not set up authentication using the config.sh script.
 
 ## Usage
 
