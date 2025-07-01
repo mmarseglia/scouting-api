@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Save and set safe shell options
 SAVED_OPTIONS="$(set +o)"
-set -euo pipefail
+set -uo pipefail
 trap 'eval "$SAVED_OPTIONS"' RETURN
 
 # This script must be sourced to set environment variables in the parent shell.
@@ -24,7 +24,7 @@ for cmd in curl jq; do
         return 1
     fi
 done
-
+unset cmd  # Unset the loop variable for cleanliness
 
 # Construct the login URL dynamically based on the username
 LOGIN_URL="https://my.scouting.org/api/users/${SCOUT_USERNAME}/authenticate"
