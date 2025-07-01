@@ -3,7 +3,9 @@
 # Check if authentication is set up
 if [ -z "$TOKEN" ] || [ -z "$userId" ]; then
     echo "Error: Authentication not set up. Please run:"
-    echo "source config.sh <username> <password>"
+    echo "export SCOUT_USERNAME=<username>"
+    echo "export SCOUT_PASSWORD=<password>"
+    echo "source config.sh"
     exit 1
 fi
 
