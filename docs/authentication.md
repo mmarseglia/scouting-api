@@ -9,7 +9,9 @@ There are two ways to obtain a JWT token:
 ### Automatic Method (Recommended)
 Use the `config.sh` script which automatically fetches the token:
 ```shell
-source config.sh <username> <password>
+export SCOUT_USERNAME=<username>
+export SCOUT_PASSWORD=<password>
+source config.sh
 ```
 
 ### Manual Method

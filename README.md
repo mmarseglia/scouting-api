@@ -38,9 +38,11 @@ Some API calls require authentication or parameters, such as a user's ID to get 
 [config.sh](config.sh).
 
 To set up authentication:
-1. Source the config.sh script with your my.scouting.org credentials:
+1. Export your my.scouting.org credentials as environment variables and then source the script:
    ```shell
-   source config.sh <username> <password>
+   export SCOUT_USERNAME=<username>
+   export SCOUT_PASSWORD=<password>
+   source config.sh
    ```
 2. This will automatically set the required environment variables:
    - `userId`: User ID of the person (automatically fetched)
