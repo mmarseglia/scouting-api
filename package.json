@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "csv-writer": "^1.6.0",
-    "fs": "^0.0.1-security",
+    "fs": "^0.0.2",
     "optic": "^0.1.0",
     "path": "^0.12.7"
   }
